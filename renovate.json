@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":noUnscheduledUpdates",
+    ":prHourlyLimit4",
+    ":prNotPending",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "rangeStrategy": "bump",
+  "stabilityDays": 7,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^date-fns"],
+      "groupName": "date-fns packages"
+    }
+  ]
+}
