@@ -2,17 +2,49 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    ":noUnscheduledUpdates",
-    ":prHourlyLimit4",
-    ":prNotPending",
-    ":timezone(Asia/Tokyo)"
+    "helpers:pinGitHubActionDigests"
   ],
-  "rangeStrategy": "bump",
-  "stabilityDays": 7,
+  "baseBranches": [
+    "main"
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^date-fns"],
-      "groupName": "date-fns packages"
+      "updateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    },
+    {
+      "baseBranchList": [
+        "main"
+      ],
+      "packageNames": [
+        "github.com/golang/protobuf",
+        "google.golang.org/protobuf"
+      ],
+      "groupName": "golang/protobuf"
+    },
+    {
+      "packagePatterns": [
+        "jekyll.*",
+        "github-pages"
+      ],
+      "enabled": false
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchPackageNames": [
+        "slsa-framework/slsa-github-generator"
+      ],
+      "pinDigests": false
     }
   ]
 }
